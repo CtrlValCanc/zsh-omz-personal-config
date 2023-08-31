@@ -54,13 +54,6 @@ fi
 
 echo "Updated Zsh configuration."
 
-# Install Nerd Font (Meslo) using yay
-if ! yay -S ttf-meslo-nerd-font-powerlevel10k; then
-    echo "Error: Nerd Font installation failed."
-    exit 1
-fi
-
-echo "Installed Nerd Font."
 
 # Install Powerlevel10k theme for Zsh using git
 if ! git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k; then
