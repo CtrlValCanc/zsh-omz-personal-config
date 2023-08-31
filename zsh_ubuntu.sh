@@ -19,12 +19,7 @@ fi
 echo "Oh My Zsh installed."
 
 # Change default shell to Zsh for the current user
-sleep 10;
-if ! chsh -s $(which zsh);
-	then
-    echo "Error: Changing default shell to Zsh failed."
-    exit 1
-fi
+	chsh -s $(which zsh);
 
 echo "Changed default shell to Zsh."
 
