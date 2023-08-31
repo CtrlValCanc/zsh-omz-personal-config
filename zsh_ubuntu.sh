@@ -19,8 +19,8 @@ fi
 echo "Oh My Zsh installed."
 
 # Change default shell to Zsh for the current user
-if ! chsh -s $(which zsh); 
-	sleep 5
+sleep 10;
+if ! chsh -s $(which zsh);
 	then
     echo "Error: Changing default shell to Zsh failed."
     exit 1
@@ -66,12 +66,18 @@ fi
 echo "Installed Powerlevel10k theme."
 
 # Download and install fonts
-wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+if ! wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf &&
+     wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf &&
+     wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf &&
+     wget -P ~/.local/share/fonts/ https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf; then
+    echo "Error: Font download failed."
+    exit 1
+fi
+
+# Update font cache
 fc-cache -vf ~/.local/share/fonts/
-echo "font downloaded"
+echo "Fonts downloaded and cache updated."
+
 
 # Ask the user if they want to add aliases
 read -p "Do you want to add aliases? (y/N): " add_aliases
